@@ -57,7 +57,7 @@ class FortifyServiceProvider extends ServiceProvider
             'domain' => config('fortify.domain', null),
             'prefix' => config('fortify.prefix'),
         ], function () {
-            $this->loadRoutesFrom(base_path('routes/routes.php'));
+            $this->loadRoutesFrom(base_path('routes/fortify.php'));
         });
     }
 }
