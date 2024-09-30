@@ -44,6 +44,9 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
         $this->configureRoutes();
+
+        Fortify::loginView('auth.edited_login');
+        Fortify::registerView('auth.edited_register');
     }
     /**
      * Configure the routes offered by the application.
