@@ -12,6 +12,7 @@ use Illuminate\Cache\RateLimiting\Limit;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
+use App\Actions\Fortify\EditedCreateNewUser;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -47,6 +48,7 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::loginView('auth.edited_login');
         Fortify::registerView('auth.edited_register');
+        Fortify::createUsersUsing(EditedCreateNewUser::class);
     }
     /**
      * Configure the routes offered by the application.
