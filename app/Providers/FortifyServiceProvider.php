@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
+use App\Actions\Fortify\LoginUser;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
@@ -47,6 +50,7 @@ class FortifyServiceProvider extends ServiceProvider
         $this->configureRoutes();
 
         Fortify::loginView('auth.edited_login');
+        Fortify::authenticateUsing([new LoginUser,'__invoke']);
         Fortify::registerView('auth.edited_register');
         Fortify::createUsersUsing(EditedCreateNewUser::class);
     }
