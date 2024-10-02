@@ -2,12 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
 use App\Actions\Fortify\LoginUser;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
@@ -16,6 +14,7 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
 use App\Actions\Fortify\EditedCreateNewUser;
+use App\Actions\Fortify\LoginAuthenticateThrough;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -53,6 +52,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::authenticateUsing([new LoginUser,'__invoke']);
         Fortify::registerView('auth.edited_register');
         Fortify::createUsersUsing(EditedCreateNewUser::class);
+        Fortify::authenticateThrough([new LoginAuthenticateThrough,'__invoke']);
     }
     /**
      * Configure the routes offered by the application.
