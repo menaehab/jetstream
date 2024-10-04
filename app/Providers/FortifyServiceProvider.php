@@ -55,6 +55,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::authenticateThrough([new LoginAuthenticateThrough,'__invoke']);
         Fortify::verifyEmailView('auth.edited_verify-email');
         Fortify::resetPasswordView('auth.edited_reset-password');
+        Fortify::requestPasswordResetLinkView('auth.edited_forgot-password');
     }
     /**
      * Configure the routes offered by the application.
