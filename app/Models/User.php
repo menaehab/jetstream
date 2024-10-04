@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\EditedResetPasswordNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,6 +21,15 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use TwoFactorAuthenticatable;
 
+    /**
+    * Send a password reset notification to the user.
+    *
+    * @param  string  $token
+    */
+    public function sendPasswordResetNotification($token): void
+    {
+        $this->notify(new EditedResetPasswordNotification($token, $this->email));
+    }
     /**
      * The attributes that are mass assignable.
      *
