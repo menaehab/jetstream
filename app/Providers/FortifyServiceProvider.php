@@ -58,6 +58,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetPasswordView('auth.edited_reset-password');
         Fortify::requestPasswordResetLinkView('auth.edited_forgot-password');
         Fortify::updateUserProfileInformationUsing(EditedUpdateUserProfileInformation::class);
+        Fortify::confirmPasswordView('auth.edited_confirm-password');
     }
     /**
      * Configure the routes offered by the application.
