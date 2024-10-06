@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use App\Actions\Fortify\EditedCreateNewUser;
 use App\Actions\Fortify\LoginAuthenticateThrough;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Actions\Fortify\EditedUpdateUserProfileInformation;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -56,6 +57,7 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::verifyEmailView('auth.edited_verify-email');
         Fortify::resetPasswordView('auth.edited_reset-password');
         Fortify::requestPasswordResetLinkView('auth.edited_forgot-password');
+        Fortify::updateUserProfileInformationUsing(EditedUpdateUserProfileInformation::class);
     }
     /**
      * Configure the routes offered by the application.
